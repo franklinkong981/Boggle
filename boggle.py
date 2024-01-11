@@ -7,11 +7,11 @@ import string
 class Boggle():
 
     def __init__(self):
-
+        """self.words = a list of all the words in words.txt."""
         self.words = self.read_dict("words.txt")
 
     def read_dict(self, dict_path):
-        """Read and return all words in dictionary."""
+        """Read and return all words in dictionary from the file words.txt as a list"""
 
         dict_file = open(dict_path)
         words = [w.strip() for w in dict_file]
@@ -19,7 +19,7 @@ class Boggle():
         return words
 
     def make_board(self):
-        """Make and return a random boggle board."""
+        """Make and return a random boggle board. It returns a 5x5 2-D array made up of 25 randomly chosen uppercase letters."""
 
         board = []
 
@@ -30,7 +30,10 @@ class Boggle():
         return board
 
     def check_valid_word(self, board, word):
-        """Check if a word is a valid word in the dictionary and/or the boggle board"""
+        """Check if a word is a valid word in the dictionary and/or the boggle board
+        Result = ok if word exists in words.txt and is found in the Boggle board
+        Result = not-on-board if word exists in words.txt but isn't found in the Boggle board
+        Result = not-word if word doesn't exist in words.txt"""
 
         word_exists = word in self.words
         valid_word = self.find(board, word.upper())
